@@ -1,0 +1,34 @@
+{
+  "name": "mini-bundler",
+  "version": "1.0.0",
+  "description": "实现一个最简单的 bundler, 理解前端开发的核心概念。",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ./bundle.js",
+    "dev:ts": "ts-node ./test/demo1/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.23.6",
+    "@babel/generator": "^7.23.6",
+    "@babel/parser": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
+    "@babel/preset-typescript": "^7.23.3",
+    "@babel/traverse": "^7.23.6",
+    "@babel/types": "^7.23.6",
+    "@types/node": "^20.10.6",
+    "lodash-es": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.23.3",
+    "@types/babel__core": "^7.20.5",
+    "@types/ws": "^8.5.10"
+  }
+}
