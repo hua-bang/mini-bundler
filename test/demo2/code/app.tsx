@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { add } from "./add";
+import Card from "./component/card/index.tsx";
 
 const App = () => {
   const [count, setCount] = useState(1);
