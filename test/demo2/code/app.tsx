@@ -10,7 +10,9 @@ const App = () => {
   }, []);
 
   return (
-    <div onClick={() => setCount((prev) => add(prev, 2))}>count: {count}</div>
+    <div onClick={() => setCount((prev) => add(prev, 2))}>
+      count: <Card title={count} />
+    </div>
   );
 };
 

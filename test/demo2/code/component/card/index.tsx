@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 
 const Card: React.FC<CardProps> = ({ title }) => {
-  return <span style="text">{title}</span>;
+  return <span className="text">{title}</span>;
 };
 
 interface CardProps {
