@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import Plugin from "../../../plugin";
 import { Compiler } from "../../../core/compiler";
+import { InjectCode } from "./inject";
 
 interface HtmlPluginOptions {
   output?: string;
@@ -49,6 +50,24 @@ class HtmlPlugin implements Plugin {
       console.log(`HtmlPlugin begin: output path is ${output}`);
       fs.writeFileSync(output, htmlContent);
       console.log(`HtmlPlugin finished.`);
+    });
+
+    compiler.hooks.createdDependencyGraph.tap("HMRPlugin", () => {
+      const { dependencyGraph } = compiler;
+
+      if (!dependencyGraph) {
+        return;
+      }
+
+      dependencyGraph.forEach((node) => {
+        if (node.id === compiler.context.options.entry) {
+          node.content = `
+            ${InjectCode}
+
+            ${node.content}
+          `;
+        }
+      });
     });
   }
 }
