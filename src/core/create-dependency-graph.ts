@@ -1,8 +1,8 @@
 import * as path from "path";
 import { createModule, isRelativeOrAbsolutePath } from "./create-module";
 import { DependencyGraph, Module } from "../typings";
-import { Loader } from "../loader";
 import { resolveModule } from "./resolve-module";
+import Context from "./context";
 
 /**
  * 创建依赖关系图。
@@ -14,9 +14,9 @@ import { resolveModule } from "./resolve-module";
  */
 export const createDependencyGraph = (
   entry: string,
-  loaderMap?: Record<string, Loader[]>
+  context: Context
 ): DependencyGraph => {
-  const entryModule = createModule(entry, loaderMap);
+  const entryModule = createModule(entry, context.loaders);
 
   const graph: DependencyGraph = new Map<string, Module>();
 
@@ -33,7 +33,10 @@ export const createDependencyGraph = (
         : dependency;
 
       const absoluteDependencyPath = resolveModule(dependencyPath);
-      const dependencyModule = createModule(absoluteDependencyPath, loaderMap);
+      const dependencyModule = createModule(
+        absoluteDependencyPath,
+        context.loaders
+      );
       explore(dependencyModule);
     });
   };

@@ -38,7 +38,7 @@ export class Compiler {
 
   bundle() {
     const { entry } = this.context.options;
-    this.dependencyGraph = createDependencyGraph(entry, this.context.loaders);
+    this.dependencyGraph = createDependencyGraph(entry, this.context);
 
     this.hooks.createdDependencyGraph.call();
 
